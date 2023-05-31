@@ -27,20 +27,35 @@ if (password === "1234") {
 
         if (rs.next()) {
             int id = rs.getInt(1);
+            String nick = rs.getString(2);
             String user = rs.getString(3);
             request.getSession();
             session.setAttribute("id", id);
+            session.setAttribute("nickname", nick);
             session.setAttribute("user", user);
 //            System.out.println(user);
-            response.sendRedirect("index.jsp");
-        }
-        %>
-alert("로그인 성공")
+//            response.sendRedirect("index.jsp");
+%>
+<script>
+    alert("로그인 성공");
+    location.href="index.jsp";
+</script>
 <%
+        } else {
+%>
+<script>
+    alert("로그인 실패");
+    location.href="index.jsp";
+</script>
+<%
+        }
     } catch(SQLException e) {
         e.printStackTrace();
 %>
+<script>
 alert("로그인 실패");
+location.href="index.jsp";
+</script>
 <%
     } finally {
         if (pstmt != null) pstmt.close();
