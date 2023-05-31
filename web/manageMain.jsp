@@ -17,7 +17,7 @@
     <li><a href="logout.jsp">로그아웃</a></li>
     <li><a href="selectUser.jsp">회원 관리</a></li>
     <li><a href="selectHospital.jsp">병원 목록</a></li>
-    <li><a href="selectHospitalRecord.jsp">병원 진료 기록</a></li>
+    <li><a href="HospitalRecord.jsp">병원 진료 기록</a></li>
     <li><a href="selectPhysical.jsp">신체 측정 기록</a></li>
     <li><a href="selectAll.jsp">건강 기록 모아 보기</a></li>
 </ul>

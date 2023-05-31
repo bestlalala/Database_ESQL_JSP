@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: iyeonsu
   Date: 2023/05/31
@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="dbconn.jsp"%>
 <html>
 <head>
     <title>전체 병원 진료 기록</title>
@@ -30,9 +31,6 @@
     </style>
 </head>
 <body>
-<h2>병원 진료 기록 관리</h2>
-<p>전체 회원의 병원 진료 기록 목록</p>
-<%@ include file="dbconn.jsp"%>
 <table>
     <tr>
         <th>R#</th>
@@ -47,17 +45,16 @@
         <th>진료 날짜</th>
     </tr>
     <%
-        // 3) SQL문 준비
+        // 3) SQL문 준비 (페이지에서 관리자/회원에 따라 다르게 가져옴)
         try {
-            String sql = "SELECT R.R#, nickname, username, H.name, H.subject, H.[location], R.reason, R.descript, R.disease, h_date\n" +
-                    "FROM Hospital_Record R, Hospital H, MyUser U\n" +
-                    "WHERE R.u# = U.U#\n" +
-                    "And R.hosp_id = H.H#";
-            stmt = con.createStatement();
-
-            // 4) 실행
-            rs = stmt.executeQuery(sql);
-
+            if (!snick.equals("root")) {
+                pstmt = con.prepareStatement(sql);
+                pstmt.setInt(1, uid);
+                rs = pstmt.executeQuery();
+            } else {
+                stmt = con.createStatement();
+                rs = stmt.executeQuery(sql);
+            }
             // 5) 결과를 테이블에 출력
             while (rs.next()) {
     %>
@@ -78,9 +75,12 @@
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (stmt != null) stmt.close();
-            if (con != null) con.close();
+            try {
+                if (rs != null) rs.close();
+                if (pstmt != null) pstmt.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();
+            } catch (SQLException e){ e.printStackTrace(); }
         }
     %>
 

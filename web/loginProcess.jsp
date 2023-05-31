@@ -9,6 +9,10 @@
 <script>
 const password = prompt("비밀번호를 입력해주세요.");
 if (password === "1234") {
+    <%
+    request.getSession();
+    session.setAttribute("nickname", "root");
+    %>
     alert("관리자 로그인 성공");
     location.href="manageMain.jsp";
 } else {
@@ -33,8 +37,6 @@ if (password === "1234") {
             session.setAttribute("id", id);
             session.setAttribute("nickname", nick);
             session.setAttribute("user", user);
-//            System.out.println(user);
-//            response.sendRedirect("index.jsp");
 %>
 <script>
     alert("로그인 성공");
