@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="db_jsp:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/db_jsp_war</output-path>
+    <root id="archive" name="db_jsp_war.war">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="mssql-jdbc-12.2.0.jre11" />
+        </element>
+        <element id="directory" name="classes">
+          <element id="library" level="project" name="apache-tomcat-9.0" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

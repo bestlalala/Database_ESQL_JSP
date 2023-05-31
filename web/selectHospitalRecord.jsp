@@ -18,11 +18,14 @@
         th {
             width: 150px;
             background-color: rgb(16,229,170);
-            border-color: black;
+            border: 1px solid rgb(1,27,20);
+            padding: 3px;
         }
 
         td {
             text-align: center;
+            border: 1px solid rgb(1,27,20);
+            padding: 3px;
         }
     </style>
 </head>

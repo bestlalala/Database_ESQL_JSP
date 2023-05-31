@@ -10,12 +10,15 @@
 
         th {
             width: 100px;
-            background-color: rgb(255, 140, 140);
-            border-color: black;
+            background-color: rgb(9,137,102);
+            border: 1px solid rgb(1,27,20);
+            padding: 3px;
         }
 
         td {
             text-align: center;
+            border: 1px solid rgb(1,27,20);
+            padding: 3px;
         }
     </style>
 </head>
