@@ -20,7 +20,9 @@
   <li><a href="#">신체 측정 기록</a></li>
   <li><a href="#">건강 기록 모아 보기</a></li>
   <li><a href="selectUser.jsp">회원 정보 조회</a></li>
+  <% if (session.getAttribute("id") != null) { %>
   <li><a href="deleteUser.jsp">회원 탈퇴</a></li>
+  <% } %>
 </ul>
 </body>
 </html>
