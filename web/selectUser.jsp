@@ -1,4 +1,3 @@
-<%@ page import="java.sql.*" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -21,6 +20,8 @@
     </style>
 </head>
 <body>
+<h2>회원 관리</h2>
+<p>전체 회원 정보 조회</p>
 <%@ include file="dbconn.jsp"%>
     <table>
         <tr>
