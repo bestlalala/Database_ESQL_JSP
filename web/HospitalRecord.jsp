@@ -13,21 +13,8 @@
 <body>
 <h2>병원 진료 기록 관리</h2>
 
+<%@include file="sessionCheck.jsp"%>
 <%
-    int uid = 0;
-    String snick = ""; String sql = "";
-    try {
-        if (session.getAttribute("id") != null) {
-             uid = (int) session.getAttribute("id");
-        }
-        if (session.getAttribute("nickname") == null) {
-            System.out.println("nickname 세션 없음");
-        }
-        snick = (String) session.getAttribute("nickname");
-
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
     // 일반 회원
     if (!snick.equals("root")) {
         sql = "SELECT R.R#, nickname, username, H.name, H.subject, H.location, R.reason, R.descript, R.disease, R.h_date\n" +
