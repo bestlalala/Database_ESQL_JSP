@@ -30,8 +30,7 @@
     </style>
 </head>
 <body>
-<h2>전체 신체 측정 기록 관리</h2>
-<p>전체 회원의 신체 측정 기록을 보여줍니다.</p>
+
 <%@ include file="dbconn.jsp"%>
 <table>
     <tr>
@@ -50,13 +49,12 @@
     <%
         // 3) SQL문 준비
         try {
-            String sql = "SELECT P#, U.nickname, U.username, user_height, user_weight, BMI, waist, fat, muscle, metabolic_rate, p_date\n" +
-                    "FROM Physical_info P, MyUser U\n" +
-                    "WHERE P.u# = U.U#";
-            stmt = con.createStatement();
 
-            // 4) 실행
-            rs = stmt.executeQuery(sql);
+            pstmt = con.prepareStatement(sql);
+            if (!snick.equals("root")) {
+                pstmt.setInt(1, uid);
+            }
+            rs = pstmt.executeQuery();
 
             // 5) 결과를 테이블에 출력
             while (rs.next()) {
@@ -65,13 +63,13 @@
         <td><%= rs.getInt(1) %></td>
         <td><%= rs.getString(2) %></td>
         <td><%= rs.getString(3) %></td>
-        <td><%= rs.getString(4) %></td>
-        <td><%= rs.getString(5) %></td>
-        <td><%= rs.getString(6) %></td>
-        <td><%= rs.getString(7) %></td>
-        <td><%= rs.getString(8) %></td>
-        <td><%= rs.getString(9) %></td>
-        <td><%= rs.getString(10) %></td>
+        <td><%= rs.getFloat(4) %></td>
+        <td><%= rs.getFloat(5) %></td>
+        <td><%= rs.getFloat(6) %></td>
+        <td><%= rs.getFloat(7) %></td>
+        <td><%= rs.getFloat(8) %></td>
+        <td><%= rs.getFloat(9) %></td>
+        <td><%= rs.getInt(10) %></td>
         <td><%= rs.getString(11) %></td>
     </tr>
     <%
@@ -80,7 +78,7 @@
             e.printStackTrace();
         } finally {
             if (rs != null) rs.close();
-            if (stmt != null) stmt.close();
+            if (pstmt != null) pstmt.close();
             if (con != null) con.close();
         }
     %>

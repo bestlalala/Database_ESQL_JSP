@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>병원 진료 기록 관</title>
+    <title>병원 진료 기록 관리</title>
 </head>
 <body>
 <h2>병원 진료 기록 관리</h2>
