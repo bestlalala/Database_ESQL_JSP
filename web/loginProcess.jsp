@@ -31,7 +31,7 @@ if (password === "1234") {
             request.getSession();
             session.setAttribute("id", id);
             session.setAttribute("user", user);
-            System.out.println(user);
+//            System.out.println(user);
             response.sendRedirect("index.jsp");
         }
         %>
