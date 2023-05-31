@@ -19,7 +19,7 @@
     <li><a href="selectHospital.jsp">병원 목록</a></li>
     <li><a href="selectHospitalRecord.jsp">병원 진료 기록</a></li>
     <li><a href="selectPhysical.jsp">신체 측정 기록</a></li>
-    <li><a href="#">건강 기록 모아 보기</a></li>
+    <li><a href="selectAll.jsp">건강 기록 모아 보기</a></li>
     <li><a href="#">회원 탈퇴</a></li>
 </ul>
 </body>

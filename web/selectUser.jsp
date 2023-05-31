@@ -12,7 +12,8 @@
             width: 100px;
             background-color: rgb(9,137,102);
             border: 1px solid rgb(1,27,20);
-            padding: 3px;
+            padding: 3px 2px;
+            color: white;
         }
 
         td {
