@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     int uid = 0;
-    String snick = ""; String sql = "";
+    String snick =""; String sql="";
     try {
         if (session.getAttribute("id") != null) {
             uid = (int) session.getAttribute("id");

@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="dbconn.jsp"%>
+<%--<%@include file="sessionCheck.jsp"%>--%>
 <html>
 <head>
     <title>전체 병원 진료 기록</title>
@@ -43,32 +44,58 @@
         <th>진단 내용</th>
         <th>병명</th>
         <th>진료 날짜</th>
+        <th>선택</th>
     </tr>
     <%
         // 3) SQL문 준비 (페이지에서 관리자/회원에 따라 다르게 가져옴)
         try {
             if (!snick.equals("root")) {
+                sql = "SELECT R.R#, nickname, username, H.name, H.subject, H.location, R.reason, R.descript, R.disease, R.h_date\n" +
+                        "FROM Hospital H, Hospital_Record R, MyUser U\n" +
+                        "WHERE H.H# = R.hosp_id\n" +
+                        "AND R.u# = U.U#\n" +
+                        "AND U.U# = ?";
                 pstmt = con.prepareStatement(sql);
                 pstmt.setInt(1, uid);
                 rs = pstmt.executeQuery();
             } else {
+                sql = "SELECT R.R#, nickname, username, H.name, H.subject, H.location, R.reason, R.descript, R.disease, h_date\n" +
+                        "FROM Hospital_Record R, Hospital H, MyUser U\n" +
+                        "WHERE R.u# = U.U#\n" +
+                        "And R.hosp_id = H.H#";
                 stmt = con.createStatement();
                 rs = stmt.executeQuery(sql);
             }
             // 5) 결과를 테이블에 출력
             while (rs.next()) {
-    %>
+                int rid = rs.getInt(1);
+                String nickname = rs.getString(2);
+                String username = rs.getString(3);
+                String hname    = rs.getString(4);
+                String subject  = rs.getString(5);
+                String location = rs.getString(6);
+                String reason   = rs.getString(7);
+                String descript = rs.getString(8);
+                String disease  = rs.getString(9);
+                String h_date   = rs.getString(10);
+     %>
     <tr>
-        <td><%= rs.getInt(1) %></td>
-        <td><%= rs.getString(2) %></td>
-        <td><%= rs.getString(3) %></td>
-        <td><%= rs.getString(4) %></td>
-        <td><%= rs.getString(5) %></td>
-        <td><%= rs.getString(6) %></td>
-        <td><%= rs.getString(7) %></td>
-        <td><%= rs.getString(8) %></td>
-        <td><%= rs.getString(9) %></td>
-        <td><%= rs.getString(10) %></td>
+        <form method="post" action="updateRecord.jsp">
+            <input hidden name="rid"      value="<%=rid%>"/>        <td><%=rid%></td>
+            <input hidden name="nickname" value="<%=nickname%>"/>   <td><%=nickname%></td>
+            <input hidden name="username" value="<%=username%>"/>   <td><%=username%></td>
+            <input hidden name="hname"    value="<%=hname%>"/>      <td><%=hname%></td>
+            <input hidden name="subject"  value="<%=subject%>"/>    <td><%=subject%></td>
+            <input hidden name="location" value="<%=location%>"/>   <td><%=location%></td>
+            <input hidden name="reason"   value="<%=reason%>"/>     <td><%=reason%></td>
+            <input hidden name="descript" value="<%=descript%>"/>   <td><%=descript%></td>
+            <input hidden name="disease"  value="<%=disease%>"/>    <td><%=disease%></td>
+            <input hidden name="h_date"   value="<%=h_date%>"/>     <td><%=h_date%></td>
+                <td>
+                    <button type="submit">수정</button>
+                    <button type="submit" formaction="deleteR.jsp">삭제</button>
+                </td>
+        </form>
     </tr>
     <%
             }
@@ -83,7 +110,6 @@
             } catch (SQLException e){ e.printStackTrace(); }
         }
     %>
-
 </table>
 </body>
 </html>
