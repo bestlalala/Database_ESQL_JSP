@@ -70,5 +70,7 @@
     %>
 
 </table>
+<%--메뉴--%>
+<p><a type="button" href="newHospital.jsp">등록하기</a></p>
 </body>
 </html>
