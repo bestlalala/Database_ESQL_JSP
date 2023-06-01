@@ -11,15 +11,15 @@
     <title>신체 측정 기록</title>
 </head>
 <body>
-<h1>새로운 신체 측정 정보 기록하기</h1>
+<h2>새로운 신체 측정 정보 기록하기</h2>
 <form method="post" action="insertP.jsp">
-    <label>키(cm):<input type="text" name="height"></label><br/>
-    <label>체중(kg): <input type="text" name="weight"></label><br/>
-    <label>허리 둘레(cm): <input type="text" name="waist"></label><br/>
-    <label>체지방률(%): <input type="text" name="fat"></label><br/>
-    <label>골격근량(kg): <input type="text" name="muscle"></label><br/>
-    <label>기초대사량(kcal): <input type="text" name="metabolic_rate"></label><br/>
-    <label>측정 날짜 (ex. 2023-05-28)(오늘이라면 0을 입력하세요.): <input type="text" name="measure_date"></label><br/>
+    <label>키(cm):<input type="number" min="10" step="0.1" name="height"></label><br/>
+    <label>체중(kg): <input type="number" min="1" step="0.1" name="weight"></label><br/>
+    <label>허리 둘레(cm): <input type="number" min="10" step="0.1" name="waist"></label><br/>
+    <label>체지방률(%): <input type="number" min="0" step="0.1" name="fat"></label><br/>
+    <label>골격근량(kg): <input type="number" min="0" step="0.1" name="muscle"></label><br/>
+    <label>기초대사량(kcal): <input type="number" min="0" step="0.1" name="metabolic_rate"></label><br/>
+    <label>측정 날짜: <input type="date" min="1900-01-01" name="measure_date"></label><br/>
     <button type="submit">등록</button>
 </form>
 <p><a href="Physical.jsp">뒤로 가기</a></p>

@@ -71,6 +71,6 @@
 
 </table>
 <%--메뉴--%>
-<p><a type="button" href="newHospital.jsp">등록하기</a></p>
+<p><a type="button" href="newHospital.jsp">병원 등록</a></p>
 </body>
 </html>

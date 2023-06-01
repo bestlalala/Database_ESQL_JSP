@@ -1,5 +1,4 @@
-<%@ page import="java.sql.SQLException" %>
-<%@ page import="java.text.SimpleDateFormat" %><%--
+<%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: iyeonsu
   Date: 2023/06/01
@@ -19,43 +18,28 @@
     String location = request.getParameter("location");
 
 // 입력값이 올바른지 검사
-    boolean ok = true;
-    try {
-        if ((hname.length() > 50) || (subject.length() > 20) || (location.length() > 15)){
-            ok = false;
-%>
-<script>
-    alert("ERROR! 알맞는 값을 입력하세요.");
-    location.href="newHospital.jsp";
-</script>
-<%
-        }
-    } catch (Exception e){
-        e.printStackTrace();
-    }
-    // 3) SQL문 준비
-    if (ok) {
-        sql = "INSERT INTO Hospital VALUES (?, ?, ?)";
-        try {
-            assert con != null;
-            pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, hname);
-            pstmt.setString(2, subject);
-            pstmt.setString(3, location);
 
-            // 4) 실행
-            pstmt.executeUpdate();
+    // 3) SQL문 준비
+    sql = "INSERT INTO Hospital VALUES (?, ?, ?)";
+    try {
+        assert con != null;
+        pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, hname);
+        pstmt.setString(2, subject);
+        pstmt.setString(3, location);
+
+        // 4) 실행
+        pstmt.executeUpdate();
 %>
 <script>
     alert("등록이 완료되었습니다.");
     location.href="selectHospital.jsp";
 </script>
 <%
-            // JDBC 자원 닫기
-            pstmt.close();
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        // JDBC 자원 닫기
+        pstmt.close();
+        con.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
 %>
