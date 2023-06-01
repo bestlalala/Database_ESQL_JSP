@@ -40,7 +40,9 @@
         <th>병원명</th>
         <th>종류</th>
         <th>위치</th>
+        <% if (snick.equals("root")) { %>
         <th>선택</th>
+        <% } %>
     </tr>
     <%
         // 3) SQL문 준비
@@ -67,9 +69,12 @@
             <input hidden name="hname" value="<%=hname%>"/><td><%=hname%></td>
             <input hidden name="subject" value="<%=subject%>"/><td><%=subject%></td>
             <input hidden name="location" value="<%=location%>"/><td><%=location%></td>
+            <% if (snick.equals("root")) { %>
             <td>
                 <button type="submit">수정</button>
+                <button type="submit">삭제</button>
             </td>
+            <% } %>
         </form>
     </tr>
     <%
