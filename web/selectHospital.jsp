@@ -1,4 +1,4 @@
-<%--
+        <%--
   Created by IntelliJ IDEA.
   User: iyeonsu
   Date: 2023/05/31
@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="sessionCheck.jsp"%>
 <html>
 <head>
     <title>전체 병원 목록 조회</title>
@@ -39,11 +40,14 @@
         <th>병원명</th>
         <th>종류</th>
         <th>위치</th>
+        <th>선택</th>
     </tr>
     <%
         // 3) SQL문 준비
+        int hosp_id = 0;
         try {
-            String sql = "SELECT * FROM Hospital";
+
+            sql = "SELECT * FROM Hospital";
             stmt = con.createStatement();
 
             // 4) 실행
@@ -51,12 +55,22 @@
 
             // 5) 결과를 테이블에 출력
             while (rs.next()) {
+                hosp_id = rs.getInt(1);
+                String hname = rs.getString(2);
+                String subject = rs.getString(3);
+                String location = rs.getString(4);
+
     %>
     <tr>
-        <td><%= rs.getInt(1) %></td>
-        <td><%= rs.getString(2) %></td>
-        <td><%= rs.getString(3) %></td>
-        <td><%= rs.getString(4) %></td>
+        <form method="post" action="updateHospital.jsp">
+            <input hidden name="hosp_id" value="<%=hosp_id%>"/> <td><%=hosp_id%></td>
+            <input hidden name="hname" value="<%=hname%>"/><td><%=hname%></td>
+            <input hidden name="subject" value="<%=subject%>"/><td><%=subject%></td>
+            <input hidden name="location" value="<%=location%>"/><td><%=location%></td>
+            <td>
+                <button type="submit">수정</button>
+            </td>
+        </form>
     </tr>
     <%
             }
@@ -70,7 +84,5 @@
     %>
 
 </table>
-<%--메뉴--%>
-<p><a type="button" href="newHospital.jsp">병원 등록</a></p>
 </body>
 </html>
