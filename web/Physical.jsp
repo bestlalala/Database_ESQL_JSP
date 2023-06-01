@@ -48,5 +48,7 @@
     }
 %>
 <%@include file="selectPhysical.jsp"%>
+
+<p><a type="button" href="newPhysical.jsp">새로 등록하기</a></p>
 </body>
 </html>
