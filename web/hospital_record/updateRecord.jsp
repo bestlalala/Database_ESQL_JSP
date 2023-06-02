@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<%@include file="header.jsp"%>
+<%@include file="../main/header.jsp"%>
 <%
     int r_id = Integer.parseInt(request.getParameter("rid"));
     String r_reason = request.getParameter("reason");
@@ -17,7 +17,7 @@
 %>
 <body>
 <h2>병원 진료 기록 수정하기</h2>
-<%@include file="selectHospital.jsp"%>
+<%@include file="../hospital/selectHospital.jsp"%>
 <form method="post" action="updateR.jsp">
     <label>진료 기록 번호: <%=r_id%><input hidden type="number" name="r_id" value="<%=r_id%>"></label><br/>
     <label>병원 선택(H#): <input type="number" name="hosp_id" min="0"/>      </label><br/>

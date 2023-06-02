@@ -1,37 +1,36 @@
-<%@ page import="java.sql.SQLException" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: iyeonsu
   Date: 2023/06/01
-  Time: 7:15 PM
+  Time: 10:33 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="dbconn.jsp"%>
-<%@include file="sessionCheck.jsp"%>
+<%@include file="../main/dbconn.jsp"%>
+<%@include file="../main/sessionCheck.jsp"%>
 <%
-    // POST 방식의 한글처리
-    request.setCharacterEncoding("UTF-8");
 
     // 파라미터 정보 가져오기
     String hname = request.getParameter("hname");
     String subject = request.getParameter("subject");
     String location = request.getParameter("location");
+    int hosp_id = Integer.parseInt(request.getParameter("hosp_id"));
 
-// 입력값이 올바른지 검사
+    sql = "UPDATE Hospital SET name = ?, subject = ?, location = ? WHERE H# = ?";
 
-    // 3) SQL문 준비
-    sql = "INSERT INTO Hospital VALUES (?, ?, ?)";
     try {
         assert con != null;
         pstmt = con.prepareStatement(sql);
         pstmt.setString(1, hname);
         pstmt.setString(2, subject);
         pstmt.setString(3, location);
+        pstmt.setInt(4, hosp_id);
+
         // 4) 실행
         pstmt.executeUpdate();
 %>
 <script>
-    alert("완료되었습니다.");
+    alert("수정이 완료되었습니다.");
     location.href="selectHospital.jsp";
 </script>
 <%

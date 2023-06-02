@@ -8,8 +8,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="dbconn.jsp"%>
-<%@include file="sessionCheck.jsp"%>
+<%@include file="../main/dbconn.jsp"%>
+<%@include file="../main/sessionCheck.jsp"%>
 <%
 
     // 파라미터 정보 가져오기

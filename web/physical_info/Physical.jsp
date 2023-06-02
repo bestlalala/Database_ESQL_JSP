@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="sessionCheck.jsp"%>
+<%@include file="../main/sessionCheck.jsp"%>
 <html>
 <head>
     <title>신체 측정 기록 관리</title>
@@ -38,9 +38,9 @@
 <a type="button" href="newPhysical.jsp">새로 등록하기</a>
 <%  // 일반 회원
     if (!snick.equals("root")) {    %>
-<a type="button" href="index.jsp">뒤로가기</a>
+<a type="button" href="../main/index.jsp">뒤로가기</a>
 <% } else { %>
-    <a type="button" href="manageMain.jsp">뒤로가기</a>
+    <a type="button" href="../main/manageMain.jsp">뒤로가기</a>
 <% } %>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page session="true" %>
-<%@include file="dbconn.jsp"%>
+<%@include file="../dbconn.jsp"%>
 <%
     String nickname = request.getParameter("nickname");
     if (nickname.equals("root")) {

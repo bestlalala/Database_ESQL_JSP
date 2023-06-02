@@ -31,7 +31,7 @@
 </head>
 <body>
 
-<%@ include file="dbconn.jsp"%>
+<%@ include file="../main/dbconn.jsp"%>
 <table>
     <tr>
         <th>P#</th>

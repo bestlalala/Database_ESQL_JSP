@@ -14,7 +14,7 @@
 <h2>병원 진료 기록 관리</h2>
 
 <%--조회하기--%>
-<%@include file="sessionCheck.jsp"%>
+<%@include file="../main/sessionCheck.jsp"%>
 
 <%--일반 회원--%>
 <%  if (!snick.equals("root")) { %>
@@ -28,6 +28,6 @@
 <%@include file="selectHospitalRecord.jsp"%>
 <%--메뉴--%>
 <a type="button" href="newRecord.jsp">등록하기</a>
-<a type="button" href="index.jsp">뒤로가기</a>
+<a type="button" href="../main/index.jsp">뒤로가기</a>
 </body>
 </html>

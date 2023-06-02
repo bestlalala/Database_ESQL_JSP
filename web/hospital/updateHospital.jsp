@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="dbconn.jsp"%>
+<%@include file="../main/dbconn.jsp"%>
 <%
     String hname = request.getParameter("hname");
     String subject = request.getParameter("subject");

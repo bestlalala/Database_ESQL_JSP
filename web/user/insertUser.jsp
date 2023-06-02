@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@include file="dbconn.jsp"%>
+<%@include file="../main/dbconn.jsp"%>
 <html>
 <head>
     <meta charset="UTF-8">

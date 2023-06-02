@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="sessionCheck.jsp"%>
+<%@include file="../main/sessionCheck.jsp"%>
 <html>
 <head>
     <title>전체 병원 목록 조회</title>
@@ -33,7 +33,7 @@
 <body>
 <h2>병원 관리</h2>
 <p>전체 병원 목록</p>
-<%@ include file="dbconn.jsp"%>
+<%@ include file="../main/dbconn.jsp"%>
 <table>
     <tr>
         <th>H#</th>
@@ -64,7 +64,7 @@
 
     %>
     <tr>
-        <form method="post" action="updateHospital.jsp">
+        <form method="post" action="../updateHospital.jsp">
             <input hidden name="hosp_id" value="<%=hosp_id%>"/> <td><%=hosp_id%></td>
             <input hidden name="hname" value="<%=hname%>"/><td><%=hname%></td>
             <input hidden name="subject" value="<%=subject%>"/><td><%=subject%></td>

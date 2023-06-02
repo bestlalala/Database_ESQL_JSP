@@ -12,7 +12,7 @@
 </head>
 <body>
 <h2>새로운 병원 진료 기록하기</h2>
-<%@include file="selectHospital.jsp"%>
+<%@include file="../hospital/selectHospital.jsp"%>
 <form method="post" action="insertR.jsp">
     <% if (snick.equals("root")) { %>
     <label>회원 번호:        <input type="number" min="0" name="newRid"/></label><br/>

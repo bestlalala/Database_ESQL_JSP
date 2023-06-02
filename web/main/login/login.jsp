@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="dbconn.jsp"%>
+<%@include file="../dbconn.jsp"%>
 
 <%
     if (session.getAttribute("id") == null) {

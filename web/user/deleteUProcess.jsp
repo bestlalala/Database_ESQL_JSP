@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="dbconn.jsp"%>
+<%@include file="../main/dbconn.jsp"%>
 <%
     String nickname = request.getParameter("nickname");
     String sessionnick = (String) session.getAttribute("nickname");
@@ -32,7 +32,7 @@ location.href = "deleteUser.jsp";
         pstmt.close();
         con.close();
 %>
-<%@include file="logout.jsp"%>
+<%@include file="../main/login/logout.jsp"%>
 <script>
     alert("회원 탈퇴가 완료되었습니다.");
     location.href="index.jsp";

@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="dbconn.jsp"%>
+<%@ include file="../main/dbconn.jsp"%>
 <%--<%@include file="sessionCheck.jsp"%>--%>
 <html>
 <head>
@@ -80,7 +80,7 @@
                 String h_date   = rs.getString(10);
      %>
     <tr>
-        <form method="post" action="updateRecord.jsp">
+        <form method="post" action="hospital_record/updateRecord.jsp">
             <input hidden name="rid"      value="<%=rid%>"/>        <td><%=rid%></td>
             <input hidden name="nickname" value="<%=nickname%>"/>   <td><%=nickname%></td>
             <input hidden name="username" value="<%=username%>"/>   <td><%=username%></td>

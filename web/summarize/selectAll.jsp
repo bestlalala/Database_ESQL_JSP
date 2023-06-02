@@ -34,7 +34,7 @@
 <h2>병원 진료 기록 관리</h2>
 <p>전체 회원의 병원 진료 기록 목록</p>
 <p>각 회원이 한 달에 병원에 방문한 횟수와 가장 많이 방문한 병원, 그리고 평균 키와 체중, BMI를 보여줍니다.</p>
-<%@ include file="dbconn.jsp"%>
+<%@ include file="../main/dbconn.jsp"%>
 <table>
     <tr>
         <th>회원 이름</th>
