@@ -22,6 +22,7 @@
 
     // 입력값이 올바른지 검사
     boolean ok = true;
+
     try {
         String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         // 미래 날짜인지 확인
@@ -34,8 +35,20 @@
     location.href = 'updateRecord.jsp';
 </script>
 <%
-    }
-} catch (Exception e){
+        }
+        sql = "SELECT * FROM Hospital WHERE H# = ?";
+        pstmt = con.prepareStatement(sql);
+        pstmt.setInt(1, hosp_id);
+        rs = pstmt.executeQuery();
+        if (!rs.next()) { ok = false;
+%>
+<script>
+    alert("목록에 존재하는 병원을 선택하세요.");
+    location.href="HospitalRecord.jsp";
+</script>
+<%
+        }
+    } catch (Exception e){
     e.printStackTrace();
 %>
 <script>
@@ -43,28 +56,30 @@
     location.href = 'updateRecord.jsp';
 </script>
 <% }
-    sql = "UPDATE Hospital_Record SET hosp_id = ?, reason = ?, descript = ?, disease = ?, h_date = ? WHERE R# = ?";
-    try {
-        assert con != null;
-        pstmt = con.prepareStatement(sql);
-        pstmt.setInt(1, hosp_id);
-        pstmt.setString(2, reason);
-        pstmt.setString(3, descript);
-        pstmt.setString(4, disease);
-        pstmt.setString(5, h_date);
-        pstmt.setInt(6, rid);
+    if (ok) {
+        sql = "UPDATE Hospital_Record SET hosp_id = ?, reason = ?, descript = ?, disease = ?, h_date = ? WHERE R# = ?";
+        try {
+            assert con != null;
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, hosp_id);
+            pstmt.setString(2, reason);
+            pstmt.setString(3, descript);
+            pstmt.setString(4, disease);
+            pstmt.setString(5, h_date);
+            pstmt.setInt(6, rid);
 
-        pstmt.executeUpdate();
+            pstmt.executeUpdate();
 %>
 <script>
     alert("수정이 완료되었습니다.");
     location.href="HospitalRecord.jsp";
 </script>
 <%
-        // JDBC 자원 닫기
-        pstmt.close();
-        con.close();
-    } catch (SQLException e) {
-        e.printStackTrace();
+            // JDBC 자원 닫기
+            pstmt.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 %>

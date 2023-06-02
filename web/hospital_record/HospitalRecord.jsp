@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../main/dbconn.jsp"%>
+<%@include file="../main/sessionCheck.jsp"%>
 <html>
 <head>
     <title>병원 진료 기록 관리</title>
@@ -33,10 +34,6 @@
 <%@include file="../main/header.jsp"%>
 <body>
 <h2>병원 진료 기록 관리</h2>
-
-<%--조회하기--%>
-<%@include file="../main/sessionCheck.jsp"%>
-
 <%--일반 회원--%>
 <% if (!snick.equals("root")) { %>
 <p>나의 병원 진료 기록 목록</p>
