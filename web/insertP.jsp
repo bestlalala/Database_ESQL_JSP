@@ -40,16 +40,11 @@
 <%
     }
     bmi = Math.round(weight / (height * height / 10000));
+} catch (Exception e){
+  e.printStackTrace();
 %>
 <script>
   alert("ERROR! 알맞는 값을 입력하세요.");
-  location.href = 'newPhysical.jsp';
-</script>
-<%
-} catch (Exception e){
-  e.printStackTrace();
-  %>
-<script>
   location.href = 'newPhysical.jsp';
 </script>
 <%

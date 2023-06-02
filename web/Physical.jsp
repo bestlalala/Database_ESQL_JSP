@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="sessionCheck.jsp"%>
 <html>
 <head>
     <title>신체 측정 기록 관리</title>
@@ -13,20 +14,6 @@
 <body>
 <h2>신체 측정 기록 관리</h2>
 <%
-    int uid = 0;
-    String snick = ""; String sql = "";
-    try {
-        if (session.getAttribute("id") != null) {
-            uid = (int) session.getAttribute("id");
-        }
-        if (session.getAttribute("nickname") == null) {
-            System.out.println("nickname 세션 없음");
-        }
-        snick = (String) session.getAttribute("nickname");
-
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
     // 일반 회원
     if (!snick.equals("root")) {
         sql = "SELECT P#, U.nickname, U.username, user_height, user_weight, BMI, waist, fat, muscle, metabolic_rate, p_date\n" +
@@ -49,6 +36,7 @@
 %>
 <%@include file="selectPhysical.jsp"%>
 
-<p><a type="button" href="newPhysical.jsp">새로 등록하기</a></p>
+<a type="button" href="newPhysical.jsp">새로 등록하기</a>
+<a type="button" href="index.jsp">뒤로가기</a>
 </body>
 </html>

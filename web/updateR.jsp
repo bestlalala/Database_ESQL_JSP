@@ -31,7 +31,7 @@
 %>
 <script>
     alert("ERROR! 미래 날짜로 설정할 수 없습니다.");
-    location.href = 'newRecord.jsp';
+    location.href = 'updateRecord.jsp';
 </script>
 <%
     }
@@ -40,7 +40,7 @@
 %>
 <script>
     alert("ERROR! 알맞는 값을 입력하세요.");
-    location.href = 'newRecord.jsp';
+    location.href = 'updateRecord.jsp';
 </script>
 <% }
     sql = "UPDATE Hospital_Record SET hosp_id = ?, reason = ?, descript = ?, disease = ?, h_date = ? WHERE R# = ?";
