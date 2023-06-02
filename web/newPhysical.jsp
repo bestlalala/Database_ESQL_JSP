@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="sessionCheck.jsp"%>
 <html>
 <head>
     <title>신체 측정 기록</title>
@@ -13,6 +14,9 @@
 <body>
 <h2>새로운 신체 측정 정보 기록하기</h2>
 <form method="post" action="insertP.jsp">
+    <% if (snick.equals("root")) { %>
+    <label>회원 번호:        <input type="number" min="0" name="newPid"/></label><br/>
+    <% } %>
     <label>키(cm):           <input type="number" min="10" step="0.1" name="height"></label><br/>
     <label>체중(kg):          <input type="number" min="1" step="0.1" name="weight"></label><br/>
     <label>허리 둘레(cm):       <input type="number" min="10" step="0.1" name="waist"></label><br/>

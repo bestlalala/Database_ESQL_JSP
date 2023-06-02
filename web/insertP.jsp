@@ -15,6 +15,10 @@
   request.setCharacterEncoding("UTF-8");
 
   // 파라미터 정보 가져오기
+  int newPid = 0;
+  if (snick.equals("root")) {
+    newPid = Integer.parseInt(request.getParameter("newPid"));
+  }
   float height = Float.parseFloat(request.getParameter("height"));
   float weight = Float.parseFloat(request.getParameter("weight"));
   float waist = Float.parseFloat(request.getParameter("waist"));
@@ -55,7 +59,11 @@
     try {
       assert con != null;
       pstmt = con.prepareStatement(sql);
-      pstmt.setInt(1, uid);
+      if (snick.equals("root")) {
+        pstmt.setInt(1, newPid);
+      } else {
+        pstmt.setInt(1, uid);
+      }
       pstmt.setFloat(2, height);
       pstmt.setFloat(3, weight);
       pstmt.setFloat(4, bmi);
