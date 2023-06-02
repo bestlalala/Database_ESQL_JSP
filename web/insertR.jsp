@@ -11,6 +11,10 @@
 <%@include file="sessionCheck.jsp"%>
 <%
     // 파라미터 정보 가져오기
+    int newRid = 0;
+    if (snick.equals("root")) {
+        newRid = Integer.parseInt(request.getParameter("newRid"));
+    }
     int hosp_id = Integer.parseInt(request.getParameter("hosp_id"));
     String reason   = request.getParameter("String reason  ");
     String descript = request.getParameter("String descript");
@@ -48,7 +52,11 @@
     try {
         assert con != null;
         pstmt = con.prepareStatement(sql);
-        pstmt.setInt(1, uid);
+        if (snick.equals("root")) {
+            pstmt.setInt(1, newRid);
+        } else {
+            pstmt.setInt(1, uid);
+        }
         pstmt.setInt(2, hosp_id);
         pstmt.setString(3, reason);
         pstmt.setString(4, descript);

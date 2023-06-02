@@ -14,6 +14,9 @@
 <h2>새로운 병원 진료 기록하기</h2>
 <%@include file="selectHospital.jsp"%>
 <form method="post" action="insertR.jsp">
+    <% if (snick.equals("root")) { %>
+    <label>회원 번호:        <input type="number" min="0" name="newRid"/></label><br/>
+    <% } %>
     <label>병원 선택(H#): <input type="number" placeholder="목록에서 병원 번호를 선택하세요." name="hosp_id" min="0"></label><br/>
     <label>방문 이유 (100자 이내): <input type="text" placeholder="왜 방문하셨나요?" name="reason" maxlength="100"></label><br/>
     <label>진단 내용 (100자 이내): <input type="text" placeholder="무슨 진단을 받으셨나요?" name="descript" maxlength="100"></label><br/>
