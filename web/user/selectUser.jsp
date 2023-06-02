@@ -76,6 +76,14 @@
             }
         %>
 
+        <%  // 일반 회원
+            if (!snick.equals("root")) {    %>
+        <a type="button" href="../index.jsp">뒤로가기</a>
+        <% } else { %>
+        <a type="button" href="signup.jsp">새로 등록하기</a><br/>
+        <a type="button" href="../main/manageMain.jsp">뒤로가기</a>
+        <% } %>
+
     </table>
 </body>
 </html>

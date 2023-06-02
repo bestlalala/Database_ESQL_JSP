@@ -78,7 +78,7 @@ location.href = 'signup.jsp';
         %>
 <script>
 alert("회원가입이 완료되었습니다.");
-location.href="index.jsp";
+location.href="../index.jsp";
 </script>
 <%
         // JDBC 자원 닫기

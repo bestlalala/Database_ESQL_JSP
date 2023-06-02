@@ -28,6 +28,11 @@
 <%@include file="selectHospitalRecord.jsp"%>
 <%--메뉴--%>
 <a type="button" href="newRecord.jsp">등록하기</a>
-<a type="button" href="../main/index.jsp">뒤로가기</a>
+<%  // 일반 회원
+    if (!snick.equals("root")) {    %>
+<a type="button" href="../index.jsp">뒤로가기</a>
+<% } else { %>
+<a type="button" href="../main/manageMain.jsp">뒤로가기</a>
+<% } %>
 </body>
 </html>

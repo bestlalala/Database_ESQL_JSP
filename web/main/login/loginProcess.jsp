@@ -14,10 +14,10 @@ if (password === "1234") {
     session.setAttribute("nickname", "root");
     %>
     alert("관리자 로그인 성공");
-    location.href="manageMain.jsp";
+    location.href="../manageMain.jsp";
 } else {
     alert("비밀번호가 틀렸습니다.");
-    location.href="index.jsp";
+    location.href="../../index.jsp";
 }
 </script>
 <%
@@ -40,14 +40,14 @@ if (password === "1234") {
 %>
 <script>
     alert("로그인 성공");
-    location.href="index.jsp";
+    location.href="../../index.jsp";
 </script>
 <%
         } else {
 %>
 <script>
     alert("로그인 실패");
-    location.href="index.jsp";
+    location.href="../../index.jsp";
 </script>
 <%
         }
@@ -56,7 +56,7 @@ if (password === "1234") {
 %>
 <script>
 alert("로그인 실패");
-location.href="index.jsp";
+location.href="../../index.jsp";
 </script>
 <%
     } finally {

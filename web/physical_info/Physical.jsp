@@ -38,7 +38,7 @@
 <a type="button" href="newPhysical.jsp">새로 등록하기</a>
 <%  // 일반 회원
     if (!snick.equals("root")) {    %>
-<a type="button" href="../main/index.jsp">뒤로가기</a>
+<a type="button" href="../index.jsp">뒤로가기</a>
 <% } else { %>
     <a type="button" href="../main/manageMain.jsp">뒤로가기</a>
 <% } %>

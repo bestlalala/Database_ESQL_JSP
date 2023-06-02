@@ -64,7 +64,7 @@
 
     %>
     <tr>
-        <form method="post" action="../updateHospital.jsp">
+        <form method="post" action="../hospital/updateHospital.jsp">
             <input hidden name="hosp_id" value="<%=hosp_id%>"/> <td><%=hosp_id%></td>
             <input hidden name="hname" value="<%=hname%>"/><td><%=hname%></td>
             <input hidden name="subject" value="<%=subject%>"/><td><%=subject%></td>
@@ -72,7 +72,7 @@
             <% if (snick.equals("root")) { %>
             <td>
                 <button type="submit">수정</button>
-                <button type="submit">삭제</button>
+                <button type="submit" formaction="../hospital/deleteH.jsp">삭제</button>
             </td>
             <% } %>
         </form>
@@ -87,7 +87,13 @@
             if (con != null) con.close();
         }
     %>
-
+    <a type="button" href="../hospital/newHospital.jsp">새로 등록하기</a>
+    <%  // 일반 회원
+        if (!snick.equals("root")) {    %>
+    <a type="button" href="../index.jsp">뒤로가기</a>
+    <% } else { %>
+    <a type="button" href="../main/manageMain.jsp">뒤로가기</a>
+    <% } %>
 </table>
 </body>
 </html>

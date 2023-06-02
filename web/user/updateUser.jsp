@@ -59,12 +59,19 @@
 
             // 4) 실행
             pstmt.executeUpdate();
-%>
-<script>
-    alert("수정이 완료되었습니다.");
-    location.href="index.jsp";
-</script>
+            // 일반 회원
+            if (!snick.equals("root")) {    %>
+            <script>
+                alert("수정이 완료되었습니다.");
+                location.href = '../index.jsp';
+            </script>
+        <%  } else {    %>
+            <script>
+                alert("수정이 완료되었습니다.");
+                location.href = '../main/manageMain.jsp';
+            </script>
 <%
+            }
             // JDBC 자원 닫기
             pstmt.close();
             con.close();
