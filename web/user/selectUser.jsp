@@ -3,7 +3,7 @@
 <%@include file="../main/sessionCheck.jsp"%>
 <html>
 <head>
-    <title>전체 회원 정보 조회</title>
+    <title>회원 정보 조회</title>
     <style>
         table {
             border-collapse: collapse;
@@ -26,7 +26,7 @@
 </head>
 <body>
 <h2>회원 관리</h2>
-<p>전체 회원 정보 조회</p>
+<p>회원 정보 조회</p>
 <%@ include file="../main/dbconn.jsp"%>
     <table>
         <tr>

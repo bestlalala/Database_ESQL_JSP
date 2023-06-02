@@ -7,15 +7,12 @@
 </head>
 <body>
 <%
-    // POST 방식의 한글처리
-    request.setCharacterEncoding("UTF-8");
-
     // 파라미터 정보 가져오기
     String nickname = request.getParameter("nickname");
     String username = request.getParameter("username");
     String regist_num = request.getParameter("regist_num");
     String gender = "";
-
+    boolean ok = true;
     // 입력값이 올바른지 검사
     try {
         if (nickname.length() <= 15) {
@@ -25,6 +22,7 @@
 
             rs = pstmt.executeQuery();
             if (rs.next()) {
+                ok = false;
 %>
 <script>
 alert("ERROR! 해당 닉네임은 사용할 수 없습니다.");
@@ -33,24 +31,14 @@ location.href = 'signup.jsp';
 <%
             }
         }
-        if (username.length() > 50) {
-%>
-<script>
-alert("ERROR! 50자 이내로 입력해주세요.");
-location.href = 'signup.jsp';
-</script>
-<%
-        }
-        if (regist_num.length() == 7) {
-            int gen = Integer.parseInt(regist_num.substring(6, 7));
-            if (gen > 0 && gen < 5) {
-                if (gen == 1 || gen == 3) {
-                    gender = "M";
-                } else {
-                    gender = "F";
-                }
+        int gen = Integer.parseInt(regist_num.substring(6, 7));
+        if (gen > 0 && gen < 5) {
+            if (gen == 1 || gen == 3) {
+                gender = "M";
+            } else {
+                gender = "F";
             }
-        } else {
+        } else { ok = false;
 %>
 <script>
 alert("ERROR! 주민번호가 알맞지 않습니다. 다시 입력해주세요.");
@@ -63,8 +51,10 @@ location.href = 'signup.jsp';
     }
 
     // 3) SQL문 준비
-    String sql = "INSERT INTO MyUser (nickname, username, regist#, gender) VALUES (?, ?, ?, ?)";
+    String sql = "INSERT INTO MyUser (nickname, username, regist#, gender) " +
+            "VALUES (?, ?, ?, ?)";
 
+    if (ok) {
     try {
         assert con != null;
         pstmt = con.prepareStatement(sql);
@@ -86,6 +76,7 @@ location.href="../index.jsp";
         con.close();
     } catch (Exception e) {
        e.printStackTrace();
+    }
     }
 %>
 </body>

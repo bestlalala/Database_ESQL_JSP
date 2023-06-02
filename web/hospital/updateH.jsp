@@ -16,7 +16,8 @@
     String location = request.getParameter("location");
     int hosp_id = Integer.parseInt(request.getParameter("hosp_id"));
 
-    sql = "UPDATE Hospital SET name = ?, subject = ?, location = ? WHERE H# = ?";
+    sql = "UPDATE Hospital SET name = ?, subject = ?, location = ? " +
+            "WHERE H# = ?";
 
     try {
         assert con != null;

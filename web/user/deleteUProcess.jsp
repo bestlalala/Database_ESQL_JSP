@@ -35,7 +35,7 @@ location.href = "deleteUser.jsp";
 <%@include file="../main/login/logout.jsp"%>
 <script>
     alert("회원 탈퇴가 완료되었습니다.");
-    location.href="index.jsp";
+    location.href="../index.jsp";
 </script>
 <%
     } catch (Exception e) {
