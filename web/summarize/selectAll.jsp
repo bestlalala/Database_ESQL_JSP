@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: iyeonsu
   Date: 2023/05/31
@@ -6,9 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="../main/dbconn.jsp"%>
+<%@include file="../main/sessionCheck.jsp"%>
 <html>
 <head>
-    <title>전체 건강 기록 모아 보기</title>
+    <title>건강 기록 모아 보기</title>
     <style>
         table {
             border-collapse: collapse;
@@ -31,10 +33,9 @@
     </style>
 </head>
 <body>
-<h2>병원 진료 기록 관리</h2>
-<p>전체 회원의 병원 진료 기록 목록</p>
-<p>각 회원이 한 달에 병원에 방문한 횟수와 가장 많이 방문한 병원, 그리고 평균 키와 체중, BMI를 보여줍니다.</p>
-<%@ include file="../main/dbconn.jsp"%>
+<%@include file="../main/header.jsp"%>
+<h2>건강 기록 모아 보기</h2>
+<p>한 달에 병원에 방문한 횟수와 가장 많이 방문한 병원, 그리고 평균 키와 체중, BMI를 보여줍니다.</p>
 <table>
     <tr>
         <th>회원 이름</th>
@@ -48,23 +49,41 @@
     <%
         // 3) SQL문 준비
         try {
-            String sql = "SELECT U.username, MONTH(R.h_date) AS month, \n" +
-                    "       COUNT(*) AS visit_cnt, MAX(H.name) AS most_visited_hospital, \n" +
-                    "       P2.avg_height, P2.avg_weight, P2.avg_bmi\n" +
-                    "FROM Hospital_Record R\n" +
-                    "LEFT JOIN (\n" +
-                    "    SELECT u#, MONTH(p_date) AS month, \n" +
-                    "           AVG(P.user_height) AS avg_height, AVG(P.user_weight) AS avg_weight, AVG(P.BMI) avg_bmi\n" +
-                    "    FROM Physical_info P\n" +
-                    "    GROUP BY u#, MONTH(p_date)\n" +
-                    ") P2 ON MONTH(R.h_date) = P2.month AND R.u# = P2.u#\n" +
-                    "JOIN Hospital H ON R.hosp_id = H.H#\n" +
-                    "JOIN MyUser U ON R.u# = U.U#\n" +
-                    "GROUP BY U.username, P2.avg_height, P2.avg_weight, P2.avg_bmi, MONTH(R.h_date)";
-            stmt = con.createStatement();
-
-            // 4) 실행
-            rs = stmt.executeQuery(sql);
+            // 일반 회원
+            if (!snick.equals("root")) {
+                sql = "SELECT U.username, MONTH(R.h_date) AS month, \n" +
+                        "       COUNT(*) AS visit_cnt, MAX(H.name) AS most_visited_hospital, \n" +
+                        "       P2.avg_height, P2.avg_weight, P2.avg_bmi\n" +
+                        "FROM Hospital_Record R\n" +
+                        "LEFT JOIN (\n" +
+                        "    SELECT u#, MONTH(p_date) AS month, \n" +
+                        "           AVG(P.user_height) AS avg_height, AVG(P.user_weight) AS avg_weight, AVG(P.BMI) avg_bmi\n" +
+                        "    FROM Physical_info P\n" +
+                        "    GROUP BY u#, MONTH(p_date)\n" +
+                        ") P2 ON MONTH(R.h_date) = P2.month AND R.u# = P2.u#\n" +
+                        "JOIN Hospital H ON R.hosp_id = H.H#\n" +
+                        "JOIN MyUser U ON R.u# = U.U# AND U.U# = ?\n" +
+                        "GROUP BY U.username, P2.avg_height, P2.avg_weight, P2.avg_bmi, MONTH(R.h_date)";
+                pstmt = con.prepareStatement(sql);
+                pstmt.setInt(1, uid);
+                rs = pstmt.executeQuery();
+            } else {    // 관리자
+                sql = "SELECT U.username, MONTH(R.h_date) AS month, \n" +
+                        "       COUNT(*) AS visit_cnt, MAX(H.name) AS most_visited_hospital, \n" +
+                        "       P2.avg_height, P2.avg_weight, P2.avg_bmi\n" +
+                        "FROM Hospital_Record R\n" +
+                        "LEFT JOIN (\n" +
+                        "    SELECT u#, MONTH(p_date) AS month, \n" +
+                        "           AVG(P.user_height) AS avg_height, AVG(P.user_weight) AS avg_weight, AVG(P.BMI) avg_bmi\n" +
+                        "    FROM Physical_info P\n" +
+                        "    GROUP BY u#, MONTH(p_date)\n" +
+                        ") P2 ON MONTH(R.h_date) = P2.month AND R.u# = P2.u#\n" +
+                        "JOIN Hospital H ON R.hosp_id = H.H#\n" +
+                        "JOIN MyUser U ON R.u# = U.U#\n" +
+                        "GROUP BY U.username, P2.avg_height, P2.avg_weight, P2.avg_bmi, MONTH(R.h_date)";
+                stmt = con.createStatement();
+                rs = stmt.executeQuery(sql);
+            }
 
             // 5) 결과를 테이블에 출력
             while (rs.next()) {
@@ -88,7 +107,12 @@
             if (con != null) con.close();
         }
     %>
-
 </table>
+<%  // 일반 회원
+    if (!snick.equals("root")) {    %>
+<a type="button" href="../index.jsp">뒤로가기</a>
+<% } else { %>
+<a type="button" href="../main/manageMain.jsp">뒤로가기</a>
+<% } %>
 </body>
 </html>
