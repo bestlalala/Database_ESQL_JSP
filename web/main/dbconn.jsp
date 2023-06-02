@@ -6,6 +6,7 @@
 </head>
 <body>
 <%
+
     Connection con = null;
     Statement stmt = null;
     PreparedStatement pstmt = null;

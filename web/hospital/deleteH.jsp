@@ -10,15 +10,6 @@
 <%@include file="../main/sessionCheck.jsp"%>
 <%
     String hosp_id = request.getParameter("hosp_id");
-    String nickname = (String) session.getAttribute("nickname");
-    if (!nickname.equals("root")) {
-%>
-<script>
-    alert("닉네임이 일치하지 않습니다.");
-    location.href="selectHospital.jsp";
-</script>
-<%
-    }
 %>
 <script>
     const password = prompt("정말 삭제하시겠습니까?\n삭제하려면 비밀번호를 입력하세요.");

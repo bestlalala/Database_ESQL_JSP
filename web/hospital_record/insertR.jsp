@@ -16,10 +16,10 @@
         newRid = Integer.parseInt(request.getParameter("newRid"));
     }
     int hosp_id = Integer.parseInt(request.getParameter("hosp_id"));
-    String reason   = request.getParameter("String reason  ");
-    String descript = request.getParameter("String descript");
-    String disease  = request.getParameter("String disease ");
-    String h_date   = request.getParameter("String h_date  ");
+    String reason   = request.getParameter("reason");
+    String descript = request.getParameter("descript");
+    String disease  = request.getParameter("disease");
+    String h_date   = request.getParameter("h_date");
 
 // 입력값이 올바른지 검사
     boolean ok = true;
