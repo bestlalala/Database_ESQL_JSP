@@ -30,6 +30,7 @@
         }
     </style>
 </head>
+<%@include file="../main/header.jsp"%>
 <body>
 <h2>병원 진료 기록 관리</h2>
 

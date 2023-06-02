@@ -31,6 +31,7 @@
         }
     </style>
 </head>
+<%@include file="../main/header.jsp"%>
 <body>
 <h2>신체 측정 기록 관리</h2>
 <%

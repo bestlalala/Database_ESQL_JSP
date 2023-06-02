@@ -10,6 +10,7 @@
 <head>
     <title>관리자 페이지</title>
 </head>
+<%@include file="header.jsp"%>
 <body>
 <h1>관리자 전용 페이지</h1>
 <p>관리자님 안녕하세요!</p>
